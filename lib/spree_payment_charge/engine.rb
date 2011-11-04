@@ -4,6 +4,11 @@ module SpreePaymentCharge
 
     config.autoload_paths += %W(#{config.root}/lib)
 
+    initializer "spree_payment_charge.register.calculators" do |app|
+      app.config.spree.calculators.add_class('payment_methods')
+      app.config.spree.calculators.payment_methods = [ Calculator::CeilFlatPercentTotal ]
+    end
+
     # use rspec for tests
     config.generators do |g|
       g.test_framework :rspec
@@ -19,11 +24,6 @@ module SpreePaymentCharge
       end
     end
     
-    initializer "spree_payment_charge.register.calculators" do |app|
-      app.config.spree.calculators.add_class('payment_methods')
-      app.config.spree.calculators.payment_methods = [ Calculator::CeilFlatPercentTotal ]
-    end
-
     config.to_prepare &method(:activate).to_proc
   end
 end
