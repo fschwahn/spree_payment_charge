@@ -3,7 +3,7 @@ PaymentMethod.class_eval do
   
   def create_adjustment_for(order)
     order.adjustments.where(:originator_type => "PaymentMethod").each { |a| a.destroy }
-    if calculator.present?
+    if calculator.present? && compute_amount(order) > 0
       create_adjustment("Zahlungskosten (#{name})", order, order, true)
       order.update!
     end

@@ -1,11 +1,11 @@
 SpreePaymentCharge
 ==================
+Adds support for charging for payment methods.
 
-Adds support for charges for payment methods.
 
 Installation
 ------------
-Important: You need to have a confirmation step, otherwise this extension does not work!
+Important: You need to have a confirmation step in your checkout process, otherwise this extension does not work!
 
 
 License

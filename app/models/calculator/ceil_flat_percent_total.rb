@@ -2,7 +2,7 @@ class Calculator::CeilFlatPercentTotal < Calculator
   preference :flat_percent, :decimal, :default => 0
 
   def self.description
-    I18n.t("rounded_flat_percent")
+    "Ceil Flat Percent Total"
   end
 
   def compute(object)
