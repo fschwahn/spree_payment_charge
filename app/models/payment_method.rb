@@ -48,11 +48,11 @@ class PaymentMethod < ActiveRecord::Base
   calculated_adjustments
   
   def create_adjustment_for(order)
-    order.adjustments.where(:originator_type => "PaymentMethod").each { |a| a.destroy }
+    order.adjustments.where(:originator_type => "PaymentMethod").destroy_all
     if calculator.present? && compute_amount(order) > 0
       create_adjustment("Zahlungskosten (#{name})", order, order, true)
-      order.update!
     end
+    order.update!
   end
 
 end
